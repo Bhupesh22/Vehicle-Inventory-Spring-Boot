@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "a1256772-196e-4c1f-baea-040691265bd1",
+		"name": "Vehicle-Inventory",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "addVehicle",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n      \"name\": \"Tata Indigo CR4\",\r\n      \"year\": 2013,\r\n      \"selling_price\": 350000,\r\n      \"km_driven\": 29000,\r\n      \"fuel\": \"Diesel\",\r\n      \"seller_type\": \"Individual\",\r\n      \"transmission\": \"Manual\",\r\n      \"owner\": \"First Owner\",\r\n      \"mileage\": \"23.57 kmpl\",\r\n      \"engine\": \"1396 CC\",\r\n      \"max_power\": \"70 bhp\",\r\n      \"torque\": \"140Nm@ 1800-3000rpm\",\r\n      \"seats\": 5\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9191/api/addVehicle",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"api",
+						"addVehicle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addVehicles",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\r\n    \"name\": \"Maruti Swift Dzire ZDi\",\r\n    \"year\": 2009,\r\n    \"selling_price\": 382000,\r\n    \"km_driven\": 120000,\r\n    \"fuel\": \"Diesel\",\r\n    \"seller_type\": \"Individual\",\r\n    \"transmission\": \"Manual\",\r\n    \"owner\": \"First Owner\",\r\n    \"mileage\": \"19.3 kmpl\",\r\n    \"engine\": \"1248 CC\",\r\n    \"max_power\": \"73.9 bhp\",\r\n    \"torque\": \"190Nm@ 2000rpm\",\r\n    \"seats\": 5\r\n},\r\n{\r\n    \"name\": \"Tata Indigo CR4\",\r\n    \"year\": 2013,\r\n    \"selling_price\": 290000,\r\n    \"km_driven\": 25000,\r\n    \"fuel\": \"Diesel\",\r\n    \"seller_type\": \"Individual\",\r\n    \"transmission\": \"Manual\",\r\n    \"owner\": \"First Owner\",\r\n    \"mileage\": \"23.57 kmpl\",\r\n    \"engine\": \"1396 CC\",\r\n    \"max_power\": \"70 bhp\",\r\n    \"torque\": \"140Nm@ 1800-3000rpm\",\r\n    \"seats\": 5\r\n}]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9191/api/addVehicles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"api",
+						"addVehicles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getVehicle",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9191/api/getAllVehicle",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"api",
+						"getAllVehicle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getVehicleByID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9191/api/getVehicleById/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"api",
+						"getVehicleById",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getVehicleByName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9191/api/getVehicleByName/Tata Indigo CR4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"api",
+						"getVehicleByName",
+						"Tata Indigo CR4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateVehicle",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 4,\r\n    \"name\": \"Hyundai Verna CRDi SX\",\r\n    \"year\": 2007,\r\n    \"selling_price\": 135070.0,\r\n    \"km_driven\": 119090.0,\r\n    \"fuel\": \"Diesel\",\r\n    \"seller_type\": \"Individual\",\r\n    \"transmission\": \"Manual\",\r\n    \"owner\": \"Fourth & Above Owner\",\r\n    \"mileage\": \"16.8 kmpl\",\r\n    \"engine\": \"1493 CC\",\r\n    \"max_power\": \"110 bhp\",\r\n    \"torque\": \"24@ 1,900-2,750(kgm@ rpm)\",\r\n    \"seats\": \"5\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9191/api/updateVehicle",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"api",
+						"updateVehicle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteVehicle",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9191/api/deleteVehicle/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"api",
+						"deleteVehicle",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

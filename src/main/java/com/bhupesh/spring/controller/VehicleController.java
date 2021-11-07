@@ -37,7 +37,16 @@ public class VehicleController {
 
     @GetMapping(value = "/getAllVehicle", produces = "application/json")
     public ResponseEntity<?> getAllVehicle(){
-        return ResponseEntity.ok(vehicleService.getVehicles());
+        try{
+            Optional<?> optionalVehicle = Optional.ofNullable(vehicleService.getVehicles());
+            if(optionalVehicle.isPresent()){
+                return ResponseEntity.ok(optionalVehicle.get());
+            }else{
+                return notFound();
+            }
+        }catch (Exception ex) {
+            return badRequest(ex);
+        }
     }
 
     @GetMapping(value = "/getVehicleById/{id}", produces = "application/json")

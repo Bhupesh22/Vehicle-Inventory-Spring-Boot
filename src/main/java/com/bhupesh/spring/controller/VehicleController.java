@@ -73,8 +73,18 @@ public class VehicleController {
     }
 
     @GetMapping("/getVehicleByName/{name}")
-    public List<Vehicle> getVehicleByName(@PathVariable String name) {
-        return vehicleService.getVehicleByName(name);
+    public ResponseEntity<?> getVehicleByName(@PathVariable String name) {
+        // return vehicleService.getVehicleByName(name);
+        try{
+            Optional<?> optionalVehicle = Optional.ofNullable(vehicleService.getVehicleByName(name));
+            if(optionalVehicle.isPresent()){
+                return ResponseEntity.ok(optionalVehicle.get());
+            }else{
+                return notFound();
+            }
+        }catch(Exception ex){
+            return badRequest(ex);
+        }
     }
 
     @PutMapping("/updateVehicle")

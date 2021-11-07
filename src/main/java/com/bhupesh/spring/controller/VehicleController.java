@@ -1,8 +1,10 @@
 package com.bhupesh.spring.controller;
 
+import com.bhupesh.spring.entity.ErrorObject;
 import com.bhupesh.spring.entity.Vehicle;
 import com.bhupesh.spring.service.VehicleService;
 import com.fasterxml.jackson.databind.util.JSONPObject;
+import lombok.AllArgsConstructor;
 import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,11 +12,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
+@AllArgsConstructor
 public class VehicleController {
 
     @Autowired
@@ -30,14 +35,32 @@ public class VehicleController {
         return vehicleService.saveVehicles(vehicles);
     }
 
-    @GetMapping("/getAllVehicle")
-    public List<Vehicle> getAllVehicle() {
-        return vehicleService.getVehicles();
+    @GetMapping(value = "/getAllVehicle", produces = "application/json")
+    public ResponseEntity<?> getAllVehicle(){
+        return ResponseEntity.ok(vehicleService.getVehicles());
     }
 
-    @GetMapping("/getVehicleById/{id}")
-    public Vehicle getVehicleById(@PathVariable int id) {
-        return vehicleService.getVehicleById(id);
+    @GetMapping(value = "/getVehicleById/{id}", produces = "application/json")
+    public ResponseEntity<?> getVehicleById(@PathVariable int id) {
+        try{
+            Optional<Vehicle> optionalVehicle = Optional.ofNullable(vehicleService.getVehicleById(id));
+            if(optionalVehicle.isPresent()){
+                return ResponseEntity.ok(optionalVehicle.get());
+            }
+            else{
+                return notFound();
+            }
+        }catch (Exception ex) {
+            return badRequest(ex);
+        }
+    }
+
+    private ResponseEntity<?> notFound(){
+        return new ResponseEntity<>(new ErrorObject(HttpStatus.NOT_FOUND.toString(), "Vehicle Not Found"), HttpStatus.NOT_FOUND);
+    }
+
+    private ResponseEntity<?> badRequest(Throwable throwable){
+        return new ResponseEntity<>(new ErrorObject(HttpStatus.NOT_FOUND.toString(), "Bad Request"), HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/getVehicleByName/{name}")
